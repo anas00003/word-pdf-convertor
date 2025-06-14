@@ -7,7 +7,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const UPLOAD_DIR = process.env.UPLOAD_DIR || './uploads';
-const LIBREOFFICE_PATH = 'C:\\Program Files\\LibreOffice\\program\\soffice.exe';
+const LIBREOFFICE_PATH = 'libreoffice'; // works on Linux servers like Render
+
 
 // Ensure upload directory exists
 if (!fs.existsSync(UPLOAD_DIR)) {
