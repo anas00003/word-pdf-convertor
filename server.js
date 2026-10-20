@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,10 @@ if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 }
 
+// Allow the website (and local testing) to read conversion responses cross-origin
+app.use(cors({
+    origin: ['https://thepdfbuddy.netlify.app', /^http:\/\/localhost(:\d+)?$/]
+}));
 app.use(fileUpload());
 app.use(express.static('public'));
 
